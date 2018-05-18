@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Game>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Authors name</th>
+            <th>Borrower name</th>
+            <th>Return</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Game game in Model)
+        {
+            <tr>
+                <td>@game.GameId</td>
+                <td>@game.Name</td>
+                <td>@game.Author.Name</td>
+                <td>@game.Customer.Name</td>
+                <td><a class="btn btn-success" asp-area="" asp-controller="Return" asp-action="ReturnGame" asp-route-GameId="@game.GameId">Return</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

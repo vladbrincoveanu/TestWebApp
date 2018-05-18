@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Game>
+
+<a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Game" asp-action="Create">Create new game</a>
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Authors name</th>
+            <th>Edit Game</th>
+            <th>Delete Game</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Game game in Model)
+        {
+            <tr>
+                <td>@game.GameId</td>
+                <td>@game.Name</td>
+                <td>@game.Author.Name</td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="Game" asp-action="Update" asp-route-id="@game.GameId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Game" asp-action="Delete" asp-route-id="@game.GameId" asp-route-authorId="@ViewBag.AuthorId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

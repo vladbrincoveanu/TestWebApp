@@ -1,0 +1,37 @@
+﻿
+@model HomeViewModel
+
+<h1>Steam management</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Customers Count
+            </div>
+            <div class="panel-body">
+                There are @Model.CustomerCount customers
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Authors Count
+            </div>
+            <div class="panel-body">
+                There are @Model.AuthorCount authors
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Game count
+            </div>
+            <div class="panel-body">
+                There are @Model.GameCount games available atm from which @Model.LendCount borrowed.
+            </div>
+        </div>
+    </div>
+</div>
