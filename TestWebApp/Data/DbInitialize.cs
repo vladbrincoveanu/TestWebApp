@@ -18,16 +18,22 @@ namespace TestWebApp.Data
 
 
                 // Add Customers
-                var justin = new Customer { Name = "Justin Noon" , Money = 300};
+                var justin = new Customer { Name = "Vlad" , Money = 300, Password = "1234",IsAdmin = true};
 
-                var willie = new Customer { Name = "Willie Parodi" , Money = 0};
+                var justin2 = new Customer { Name = "Vlad2", Money = 300, Password = "1234", IsAdmin = true };
 
-                var leoma = new Customer { Name = "Leoma  Gosse" , Money = 1000};
+                var justin1 = new Customer { Name = "Vlad1", Money = 300, Password = "1234", IsAdmin = false };
+
+                var willie = new Customer { Name = "Willie Parodi" , Money = 0,Password = "1234" };
+
+                var leoma = new Customer { Name = "Leoma  Gosse" , Money = 1000, Password = "1234" };
 
                 context.Customers.Add(justin);
                 context.Customers.Add(willie);
                 context.Customers.Add(leoma);
-
+                context.Customers.Add(justin1);
+                context.Customers.Add(justin2);
+                
                 // Add Author
                 Author authorDeMarco = new Author
                 {

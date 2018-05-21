@@ -9,6 +9,6 @@ namespace TestWebApp.ViewModel
     public class LendViewModel
     {
         public Game Game { get; set; }
-        public IEnumerable<Customer> Customers { get; set; }
+        public Customer Customers { get; set; }
     }
 }

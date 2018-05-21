@@ -1,0 +1,39 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "UserLogin";
+}
+
+<h2>Login</h2>
+<div class="col-md-4">
+    @if (TempData["UserLoginFailed"] != null)
+    {
+        <p class="alert alert-danger">@TempData["UserLoginFailed"]</p>
+    }
+</div>
+<div class="row orderForm">
+    <form asp-controller="Account" asp-action="LogIn" method="post" class="form-horizontal" role="form">
+
+        <h3 class="col-md-offset-2">Log in</h3>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="Name" class="form-control" placeholder="Enter customers name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="Password" class="form-control" placeholder="Enter customers Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="btn-group col-md-offset-2 col-md-6">
+                <a asp-action="Create" class="btn btn-info">SignUp</a>
+                <input class="btn btn-success" type="submit" value="Enter" />
+            </div>
+        </div>
+    </form>
+</div>

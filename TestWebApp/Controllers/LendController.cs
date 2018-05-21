@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestWebApp.Data.Interfaces;
+using TestWebApp.Data.Model;
 using TestWebApp.ViewModel;
 
 namespace TestWebApp.Controllers
@@ -17,6 +18,18 @@ namespace TestWebApp.Controllers
         {
             _gameRepository = gameRepository;
             _customerRepository = customerRepository;
+        }
+
+        public Customer findCustomerByName(List<Customer> list)
+        {
+            foreach (Customer c in list)
+            {
+                if (c.Name.Equals(HttpContext.User.Identity.Name))
+                {
+                    return c;
+                }
+            }
+            return null;
         }
 
         [Route("Lend")]
@@ -36,10 +49,13 @@ namespace TestWebApp.Controllers
 
         public IActionResult LendGame(int gameId)
         {
+
+            Customer c = findCustomerByName(_customerRepository.GetAll().ToList());
+
             var lendVM = new LendViewModel()
             {
                 Game = _gameRepository.getById(gameId),
-                Customers = _customerRepository.GetAll()
+                Customers = c
             };
 
             return View(lendVM);
@@ -49,8 +65,8 @@ namespace TestWebApp.Controllers
         public IActionResult LendGame(LendViewModel lendViewModel)
         {
             var game = _gameRepository.getById(lendViewModel.Game.GameId);
-            var customer = _customerRepository.getById(lendViewModel.Game.CustomerID);
-            var sum = customer.Money - game.Price;
+            Customer c = findCustomerByName(_customerRepository.GetAll().ToList());
+            var sum = c.Money - game.Price;
 
             if(sum <= 0)
             {
@@ -58,13 +74,13 @@ namespace TestWebApp.Controllers
             }
             else
             {
-                customer.Money = sum;
+                c.Money = sum;
 
-                game.Customer = customer;
+                game.Customer = c;
 
                 _gameRepository.Update(game);
 
-                _customerRepository.Update(customer);
+                _customerRepository.Update(c);
 
                 return RedirectToAction("List");
             }

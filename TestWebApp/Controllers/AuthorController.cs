@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using TestWebApp.Data.Model;
 
 namespace TestWebApp.Controllers
 {
+    [Authorize]
     public class AuthorController : Controller
     {
         private readonly IAuthorRepository _authorRepository;
@@ -32,7 +34,7 @@ namespace TestWebApp.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(Author author)
         {
@@ -45,7 +47,7 @@ namespace TestWebApp.Controllers
 
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var author = _authorRepository.getById(id);
@@ -54,7 +56,7 @@ namespace TestWebApp.Controllers
 
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(int id)
         {
             var author = _authorRepository.getById(id);
@@ -63,7 +65,7 @@ namespace TestWebApp.Controllers
 
             return View(author);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(Author author)
         {

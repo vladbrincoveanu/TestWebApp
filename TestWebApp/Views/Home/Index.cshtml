@@ -1,4 +1,4 @@
-﻿
+﻿@using TestWebApp.ViewModel
 @model HomeViewModel
 
 <h1>Steam management</h1>
@@ -34,4 +34,26 @@
             </div>
         </div>
     </div>
+
+    <h3 class="col-md-offset-2">User details</h3>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Name:</label>
+        <div class="col-sm-2">
+            <p class="form-control-static"> @Model.Customer.Name</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Money:</label>
+        <div class="col-sm-2">
+            <p class="form-control-static"> @Model.Customer.Money</p>
+        </div>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a asp-action="Logout">Sign Out</a>
+        </li>
+    </ul>
 </div>

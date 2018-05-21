@@ -26,7 +26,7 @@ namespace SteamRipOff.Controllers
         {
             var customers = _customerRepository.GetAll();
 
-            return View(customers);
+            return View("index");
         }
        
     }
