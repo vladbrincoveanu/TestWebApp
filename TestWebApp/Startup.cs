@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using TestWebApp.Data.Model;
+using TestWebApp.BL;
 
 namespace TestWebApp
 {
@@ -39,6 +40,11 @@ namespace TestWebApp
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IGameRepository, GameRepository>();
+            services.AddTransient<IFavoriteRepository, FavoritesRepository>();
+            services.AddSingleton<IPublisher, LendDataProvider>();
+            services.AddSingleton<ISubscriber, LendDataSubject>();
+            services.AddSingleton<IDocument, Document>();
+            services.AddSingleton<GameHistory>();
 
             services.AddMvc();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

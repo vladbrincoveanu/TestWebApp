@@ -23,6 +23,5 @@ namespace TestWebApp.Data.Model
 
         public int Price { get; set; }
 
-
     }
 }

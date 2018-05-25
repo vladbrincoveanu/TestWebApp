@@ -12,7 +12,6 @@ namespace TestWebApp.ViewModel
         public int AuthorCount { get; set; }
         public int GameCount { get; set; }
         public int LendCount { get; set; }
-
         public Customer Customer { get; set; }
     }
 }

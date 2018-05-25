@@ -45,15 +45,14 @@ namespace TestWebApp.Controllers
             return View("LogIn");
         }
 
-
         [HttpGet]
         public IActionResult LogIn()
         {
 
+
             return View("LogIn");
 
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

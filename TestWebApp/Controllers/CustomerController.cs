@@ -21,6 +21,8 @@ namespace TestWebApp.Controllers
             _customerRepository = customerRepository;
             _gameRepository = gameRepository;
         }
+
+
         [Route("Customer")]
         public IActionResult List()
         {

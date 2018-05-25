@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LendViewModel>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Customer name</th>
+            <th>Customer Money</th>
+            <th>Game Name</th>
+            <th>Game Price</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (LendViewModel lend in Model)
+        {
+            <tr>
+                <td>@lend.Customers.Name</td>
+                <td>@lend.Customers.Money</td>
+                <td>@lend.Game.Name</td>
+                <td>@lend.Game.Price</td>
+                <td>@lend.Date</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <a asp-action="Index"> Return</a>
+    </li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <a asp-action="GenerateReport"> Generate reports</a>
+    </li>
+</ul>
+
+<input class="btn btn-default" type="submit" value="Return" asp-action="Index" />
+<input class="btn btn-success" type="submit" value="Generate reports" asp-action="GenerateReport" />

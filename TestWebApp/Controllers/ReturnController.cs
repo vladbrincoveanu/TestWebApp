@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestWebApp.Data.Interfaces;
+using TestWebApp.Data.Model;
 
 namespace SteamRipOff.Controllers
 {
+    [Authorize]
     public class ReturnController : Controller
     {
         private readonly IGameRepository _gameRepository;
@@ -18,10 +21,25 @@ namespace SteamRipOff.Controllers
             _customerRepository = customerRepository;
         }
 
+        public Customer FindCustomerByName(List<Customer> list)
+        {
+            foreach (Customer c in list)
+            {
+                if (c.Name.Equals(HttpContext.User.Identity.Name))
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
+
         [Route("Return")]
         public IActionResult List()
         {
-            var borrowedGames = _gameRepository.FindWithAuthorAndBorrower(x => x.CustomerID != 0);
+
+            Customer c = FindCustomerByName(_customerRepository.GetAll().ToList());
+
+            var borrowedGames = _gameRepository.FindWithAuthorAndBorrower(x => x.CustomerID == c.CustomerId );
 
             if(borrowedGames == null || borrowedGames.ToList().Count() == 0)
             {

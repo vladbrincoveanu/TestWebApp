@@ -9,6 +9,7 @@ using TestWebApp.Data.Model;
 
 namespace TestWebApp.Controllers
 {
+
     [Authorize]
     public class AuthorController : Controller
     {

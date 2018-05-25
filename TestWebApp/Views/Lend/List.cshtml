@@ -19,7 +19,35 @@
                 <td>@game.Author.Name</td>
                 <td>@game.Price</td>
                 <td><a class="btn btn-success" asp-area="" asp-controller="Lend" asp-action="LendGame" asp-route-GameId="@game.GameId">Lend</a></td>
+                <td><a class="btn btn-warning" asp-area="" asp-controller="Lend" asp-action="AddToFavorite" asp-route-id="@game.GameId">Add To Favorite</a></td>
             </tr>
         }
+
+        @{ if (@TempData["fav"] != null)
+            {
+                IEnumerable
+                <Favorites>
+                    a = ((IEnumerable<Favorites>)@TempData["fav"]);
+            <tr>
+                <th>Old Name</th>
+                <th>New Name</th>
+                <th>Old Price</th>
+                <th>New Price</th>
+                <th>Date modified</th>
+            </tr>
+
+                foreach (Favorites fav in a)
+                {
+            <tr>
+                <td>@fav.OldGame.Name</td>
+                <td>@fav.NewGame.Name</td>
+                <td>@fav.OldGame.Price</td>
+                <td>@fav.NewGame.Price</td>
+                <td>@fav.Date</td>
+            </tr>
+
+                    }
+                }
+            }
     </tbody>
 </table>

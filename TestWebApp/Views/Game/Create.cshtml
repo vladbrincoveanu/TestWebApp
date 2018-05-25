@@ -26,6 +26,15 @@
                 <span asp-validation-for="Game.Name" class="text-danger"></span>
             </div>
         </div>
+
+        <div class="form-group">
+            <label asp-for="Game.Price" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="Game.Price" class="form-control" placeholder="Enter game Price" />
+                <span asp-validation-for="Game.Price" class="text-danger"></span>
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="btn-group col-md-offset-2 col-md-6">
                 <input class="btn btn-default" type="submit" value="Return" asp-controller="Game" asp-action="List" />

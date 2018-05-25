@@ -28,6 +28,8 @@ namespace TestWebApp.Data
 
                 var leoma = new Customer { Name = "Leoma  Gosse" , Money = 1000, Password = "1234" };
 
+                
+
                 context.Customers.Add(justin);
                 context.Customers.Add(willie);
                 context.Customers.Add(leoma);
@@ -77,7 +79,6 @@ namespace TestWebApp.Data
 
                 context.Authors.Add(authorDeMarco);
                 context.Authors.Add(authorCardone);
-
                 context.SaveChanges();
             }
         }

@@ -10,5 +10,7 @@ namespace TestWebApp.ViewModel
     {
         public Game Game { get; set; }
         public Customer Customers { get; set; }
+        public DateTime Date { get; set; }
+
     }
 }

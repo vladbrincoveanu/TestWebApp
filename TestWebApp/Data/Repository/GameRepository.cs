@@ -16,11 +16,13 @@ namespace TestWebApp.Data.Repository
 
         public IEnumerable<Game> FindWithAuthor(Func<Game, bool> predicate)
         {
-           return  _context.Games
+            return  _context.Games
               .Include(a => a.Author)
               .Where(predicate);
-
+            
+            
         }
+
         public IEnumerable<Game> FindWithAuthorAndBorrower(Func<Game, bool> predicate)
         {
             return _context.Games

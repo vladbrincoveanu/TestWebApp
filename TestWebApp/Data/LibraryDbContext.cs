@@ -19,6 +19,7 @@ namespace TestWebApp.Data
         public DbSet<Customer> Customers{ get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<Favorites> Favorites { get; set; }
 
     }
 }
