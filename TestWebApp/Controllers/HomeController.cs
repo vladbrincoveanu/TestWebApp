@@ -102,7 +102,9 @@ namespace TestWebApp.Controllers
         public IActionResult GenerateReport()
         {
 
-            //_documentGenerator.CreateDocument("pdf");
+            _documentGenerator.CreateDocument("pdf").Create(_subscriber.GetList());
+
+
             _documentGenerator.CreateDocument("txt").Create(_subscriber.GetList());
 
             return RedirectToAction("Index");

@@ -99,23 +99,46 @@ namespace TestWebApp.Controllers
 
             var game2 = _favoriteRepository.GetAllChangesForGame(game.GameId);
 
-            var game1 = game2.First();
+            if(game2.Count() == 0)
+            {
+                _favoriteRepository.Create(new Favorites
+                {
+                    NewGame = new NamePrice
+                    {
+                        Name = gameViewModel.Game.Name,
+                        Price = gameViewModel.Game.Price,
+                        GameID = gameViewModel.Game.GameId
+                    },
 
-            var fav = new Favorites { OldGame = new NamePrice{       Name = game1.NewGame.Name,
-                                                                    Price = game1.NewGame.Price,
-                                                                    GameID = game1.NewGame.GameID
-                                                              },
-                                      NewGame = new NamePrice {     Name = gameViewModel.Game.Name,
-                                                                    Price = gameViewModel.Game.Price,
-                                                                    GameID = gameViewModel.Game.GameId
-                                                              },
-                                      Date = DateTime.Now };
+                    OldGame = new NamePrice { Name = "UNregistered", Price = 0 },
+                    Date = DateTime.Now
+                });
+            }
+            else
+            {
+                var game1 = game2.First();
+
+                var fav = new Favorites
+                {
+                    OldGame = new NamePrice
+                    {
+                        Name = game1.NewGame.Name,
+                        Price = game1.NewGame.Price,
+                        GameID = game1.NewGame.GameID
+                    },
+                    NewGame = new NamePrice
+                    {
+                        Name = gameViewModel.Game.Name,
+                        Price = gameViewModel.Game.Price,
+                        GameID = gameViewModel.Game.GameId
+                    },
+                    Date = DateTime.Now
+                };
+
+                _favoriteRepository.Create(fav);
+            }
 
             _gameRepository.Update(gameViewModel.Game);
-
-            
-
-            _favoriteRepository.Create(fav);
 
             return RedirectToAction("List");
         }
